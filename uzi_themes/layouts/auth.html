@@ -1,0 +1,260 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>{% if title_page != null %} {{title_page}} | {% endif %} Reverstone Aset Ventures</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      content="Premium Multipurpose Admin & Dashboard Template"
+      name="description"
+    />
+    <meta content="" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+
+    {% block css %}
+      {% block extra_css %} {% endblock extra_css %}
+      {% include "includes/head-css.html" %}
+    {% endblock css %}
+    <style type="text/css">
+        
+        
+
+
+
+        input:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        input:disabled {
+        background-color: #e9ecef;
+        opacity: 1;
+        }
+
+        input[name="login"], input[name="password"] {
+            display: block;
+            width: 100%;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        button {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: 0.25rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        width: 100%;    
+    }
+
+        button:hover {
+        color: #fff;
+        background-color: #0069d9;
+        border-color: #0062cc;
+        }
+
+        button:focus, button.focus {
+        color: #fff;
+        background-color: #0069d9;
+        border-color: #0062cc;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+        }
+
+        button:active, button.active {
+        color: #fff;
+        background-color: #0062cc;
+        border-color: #005cbf;
+        }
+
+        
+        button:disabled, button.disabled {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+        opacity: 0.65;
+        }
+
+        #id_password_helptext a {
+            float: right;
+            margin-top: 0.6rem;
+        }
+
+        label {
+            margin-bottom: 0.2rem;
+        }
+
+        label[for="id_remember"] {
+            display: inline-block;
+
+        }
+        input[name="remember"] {
+            display: inline-block !important;
+            background-color: #0b51b7;
+            border-color: #0b51b7;
+        }
+        
+        [x-cloak] { 
+            display: none !important; 
+        }
+        h1 {
+            @apply text-4xl font-bold mb-4
+        }
+        h2 {
+            @apply text-xl font-bold mb-2
+        }
+        p {
+            @apply mb-4
+        }
+        .button, button, [type='submit'], [type='button'] {
+            @apply bg-indigo-600 text-white font-bold px-6 py-4 inline-block 
+            rounded-lg shadow-lg transition-all cursor-pointer
+        }
+        .button:hover, button:hover, [type='submit']:hover, [type='button']:hover {
+            @apply bg-indigo-700
+        }
+        .button:active, button:active, [type='submit']:active, [type='button']:active {
+            @apply scale-95
+        }
+        .button.alert, button.alert {
+            @apply bg-red-700
+        }
+        .button.alert:hover, button.alert:hover {
+            @apply bg-red-600
+        }
+        .button-red {
+            @apply !bg-red-500 hover:!bg-red-600
+        }
+        .button-gray {
+            @apply !bg-gray-300 hover:!bg-[#c3c9d0]
+        }
+        .navitems>li>a {
+            @apply flex items-center gap-2 h-12 px-4 hover:bg-gray-700 rounded-lg;
+        }
+        .hoverlist>* {
+            @apply hover:bg-gray-100 rounded-md transition duration-150;
+        }
+        .hoverlist>*>a {
+            @apply flex items-center p-2;
+        }
+        .highlight {
+            @apply !bg-indigo-100;
+        }
+        .allauth content a {
+            @apply underline underline-offset-2
+        }
+        .allauth content a:hover {
+            @apply text-indigo-500
+        }
+        .allauth form[action="/accounts/signup/"] ul {
+            @apply hidden
+        }
+        .allauth form[action="/accounts/signup/"] ul.errorlist {
+            @apply block
+        }
+        
+        
+        
+        .textarea, textarea, input {
+            @apply w-full rounded-lg py-4 px-5 bg-gray-100
+        }
+        .errorlist li {
+            @apply p-1 pl-4 border-l-red-500 border-l-4 border-solid mb-2 text-red-500
+        }
+        
+        
+        .alert-info { @apply bg-blue-300 }
+        .alert-success { @apply bg-green-400 }
+        .alert-warning { @apply bg-amber-400 }
+        .alert-danger { @apply bg-amber-500 }
+    </style>
+  </head>
+
+  <body
+    id="body"
+    class="auth-page"
+    style="
+      background-image: url('{% static 'images/p-1.png' %}');
+      background-size: cover;
+      background-position: center center;
+    "
+  >
+    <!-- Log In page -->
+    <div class="container-md">
+      <div class="row vh-100 d-flex justify-content-center">
+        <div class="col-12 align-self-center">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-4 mx-auto">
+                <div class="card">
+                  <div class="card-body p-0 auth-header-box">
+                    <div class="text-center p-3">
+                      <a href="index.html" class="logo logo-admin">
+                        <img
+                          src="{% static 'images/logo-sm.png' %}"
+                          height="50"
+                          alt="logo"
+                          class="auth-logo"
+                        />
+                      </a>
+                      <h4 class="mt-3 mb-1 fw-semibold text-white font-18">
+                        Let's Get Started Metrica
+                      </h4>
+                      <p class="text-muted mb-0">
+                        Sign in to continue to Metrica.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="card-body pt-0">
+                    {% block content %} {% endblock %}
+                  </div>
+                  <!--end card-body-->
+                </div>
+                <!--end card-->
+              </div>
+              <!--end col-->
+            </div>
+            <!--end row-->
+          </div>
+          <!--end card-body-->
+        </div>
+        <!--end col-->
+      </div>
+      <!--end row-->
+    </div>
+    <!--end container-->
+    <!-- vendor js -->
+
+    <script src="{% static 'libs/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'libs/simplebar/simplebar.min.js' %}"></script>
+    <script src="{% static 'libs/feather-icons/feather.min.js' %}"></script>
+    <!-- App js -->
+    <script src="{% static 'js/app.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,475 @@
+{% extends 'sadmins/layout.html' %} {% load static %} 
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-title-box">
+                <div class="float-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Metrica</a>
+                        </li>
+                        <li class="breadcrumb-item"><a href="#">CRM</a>
+                        </li>
+                        <li class="breadcrumb-item active">Contacts</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">{{title_page}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body p-0">
+                    <div class="row ">
+                        <div class="col">
+                            <ul class="nav nav-tabs fw-bold" role="tablist">
+                                <li class="nav-item ">
+                                    <a class="nav-link p-3 active" data-bs-toggle="tab" href="#Overview" role="tab" aria-selected="true">Overview</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link p-3 " data-bs-toggle="tab" href="#Investors" role="tab" aria-selected="false">Investors</a>
+                                </li>                                                
+                                <li class="nav-item ">
+                                    <a class="nav-link p-3" data-bs-toggle="tab" href="#Verification" role="tab" aria-selected="false">Verification</a>
+                                </li>
+                            </ul> 
+                        </div>
+                        <div class="col-auto m-auto pe-4">
+                            <button type="button" class="btn btn-de-primary btn-sm " data-bs-toggle="modal" data-bs-target="#AddInvestor"><i class="ti ti-user-plus"></i>Add Investor</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            {% include 'sadmins/investors/add.html' %}
+            <div class="tab-content">
+                <div class="tab-pane active" id="Overview" role="tabpanel">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="card report-card">
+                                        <div class="card-body">
+                                            <div class="row d-flex justify-content-center">
+                                                <div class="col">
+                                                    <p class="text-dark mb-1 fw-semibold">Total Investors</p>
+                                                    <h4 class="my-1">{{investors.count}}</h4>
+                                                    <p class="mb-0 text-truncate text-muted"><span class="text-success"><i class="mdi mdi-checkbox-marked-circle-outline me-1"></i></span>26 Active Investor</p>
+                                                </div>
+                                                <div class="col-auto align-self-center">
+                                                    <div class="bg-light-alt d-flex justify-content-center align-items-center thumb-md  rounded-circle">
+                                                        <i data-feather="layers" class="align-self-center text-muted icon-sm"></i>  
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> 
+                                    </div> 
+                                </div> 
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="card report-card">
+                                        <div class="card-body">
+                                            <div class="row d-flex justify-content-center">                                                
+                                                <div class="col">
+                                                    <p class=" mb-1 fw-semibold text-danger">Not Verified</p>
+                                                    <h4 class="my-1 text-danger">{{unverified.count}}</h4>
+                                                    <p class="mb-0 text-truncate text-muted "><span class="text-success"><i class="mdi mdi-checkbox-marked-circle-outline me-1"></i></span>26 Investors have been verified</p>
+                                                </div>
+                                                <div class="col-auto align-self-center">
+                                                    <div class="bg-light-alt d-flex justify-content-center align-items-center thumb-md  rounded-circle">
+                                                        <i data-feather="check-square" class="align-self-center text-muted icon-sm"></i>  
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>                        
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="card report-card">
+                                        <div class="card-body">
+                                            <div class="row d-flex justify-content-center">
+                                                <div class="col">  
+                                                    <p class="text-dark mb-1 fw-semibold">Logged in Today</p>  
+                                                    <h4 class="my-1">{{login_record_days.count}}</h4>   
+                                                    <p class="mb-0 text-truncate text-muted"><span class="text-muted">01:33</span> / 
+                                                        <span class="text-muted">9:30</span>  Duration</p>
+                                                </div>
+                                                <div class="col-auto align-self-center">
+                                                    <div class="bg-light-alt d-flex justify-content-center align-items-center thumb-md  rounded-circle">
+                                                        <i data-feather="clock" class="align-self-center text-muted icon-sm"></i>  
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div> 
+                                    </div> 
+                                </div> 
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="card report-card">
+                                        <div class="card-body">
+                                            <div class="row d-flex justify-content-center">                                                
+                                                <div class="col">
+                                                    <p class="text-dark mb-1 fw-semibold">Logged In Last 30 Days</p>
+                                                    <h4 class="my-1">{{login_record_30_days.count}}</h4>   
+                                                    <p class="mb-0 text-truncate text-muted"><span class="text-dark">{{login_record_30_days.count}}</span> Total used budgets</p>
+                                                </div>
+                                                <div class="col-auto align-self-center">
+                                                    <div class="bg-light-alt d-flex justify-content-center align-items-center thumb-md  rounded-circle">
+                                                        <i data-feather="dollar-sign" class="align-self-center text-muted icon-sm"></i>  
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </div> 
+                                    </div> 
+                                </div>                              
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="row align-items-center">
+                                                <div class="col">                      
+                                                    <h4 class="card-title">A new Investor account is created</h4>                      
+                                                </div>
+                                            </div>                                   
+                                        </div>
+                                        <div class="card-body dash-info-carousel">                                    
+                                            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active">
+                                                        <div class="row">    
+                                                            <div class="col-12 align-self-center">
+                                                                <h6 class="mt-0 text-start">Apollo Hospital</h6>
+                                                                <div class="media mt-3">
+
+                                                                    <img src="{% static 'images/users/dr-1.jpg' %}" alt="" height="70"  class="rounded-circle">                                   
+                                                                    <div class="media-body align-self-center ms-3">
+                                                                        <h5 class="mt-0 mb-1 font-15">Dr.Helen White</h5>
+                                                                        <p class="text-muted mb-0"><span class="me-2 text-secondary">MS Cardiology</span> 11:00am to 03:00pm</p>
+                                                                        <ul class="list-inline mb-0">
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star-half text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><small class="text-muted">4.91/5 (1021 reviews)</small></li>
+                                                                        </ul> 
+                                                                    </div>
+                                                                </div>  
+                                                                <hr class="hr-dashed">                                                         
+                                                                <div class="p-2 bg-light">                                                           
+                                                                    <div class="media">
+                                                                       <h3>68</h3>                                     
+                                                                        <div class="media-body align-self-center ms-3">
+                                                                            <p class="mb-0 font-weight-semibold text-uppercase text-dark-alt">Appointments</p>
+                                                                            <p class="mb-0 text-muted">Last Saturday 52 Appointments</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>                                                    
+                                                            </div>                                                        
+                                                        </div> 
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <div class="row">   
+                                                            <div class="col-12 align-self-center">
+                                                                <h6 class="mt-0 text-start">Kaiser Foundation Hospital</h6>
+                                                                <div class="media mt-3">
+                                                                    <img src="{% static 'images/users/dr-3.jpg' %}" alt="" height="70"  class="rounded-circle">                                   
+                                                                    <div class="media-body align-self-center ms-3">
+                                                                        <h5 class="mt-0 mb-1 font-15">Dr.Wendy Keen</h5>
+                                                                        <p class="text-muted mb-0"><span class="me-2 text-secondary">MD Neurology</span> 01:00pm to 04:00pm</p>
+                                                                        <ul class="list-inline mb-0">
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star-half text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><small class="text-muted">4.91/5 (1021 reviews)</small></li>
+                                                                        </ul> 
+                                                                    </div>
+                                                                </div>  
+                                                                <hr class="hr-dashed"> 
+                                                                <div class="p-2 bg-light">                                                           
+                                                                    <div class="media">
+                                                                       <h3>42</h3>                                     
+                                                                        <div class="media-body align-self-center ms-3">
+                                                                            <p class="mb-0 font-weight-semibold text-uppercase text-dark-alt">Appointments</p>
+                                                                            <p class="mb-0 text-muted">Last Saturday 52 Appointments</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>                                                 
+                                                            </div>                                       
+                                                        </div> 
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <div class="row">  
+                                                            <div class="col-12 align-self-center">
+        
+                                                                <h6 class="mt-0 text-start">Florida Hospital</h6>
+                                                                <div class="media mt-3">
+                                                                    <img src="{% static 'images/users/dr-2.jpg' %}" alt="" height="70"  class="rounded-circle">                                   
+                                                                    <div class="media-body align-self-center ms-3">
+                                                                        <h5 class="mt-0 mb-1 font-15">Dr.Lisa King</h5>
+                                                                        <p class="text-muted mb-0"><span class="me-2 text-secondary">MD Orthopedic</span> 09:00am to 11:30am</p>
+                                                                        <ul class="list-inline mb-0">
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><i class="mdi mdi-star-half text-warning font-16"></i></li>
+                                                                            <li class="list-inline-item m-0"><small class="text-muted">4.91/5 (1021 reviews)</small></li>
+                                                                        </ul> 
+                                                                    </div>
+                                                                </div>  
+                                                                <hr class="hr-dashed"> 
+                                                                <div class="p-2 bg-light">                                                           
+                                                                    <div class="media">
+                                                                       <h3>35</h3>                                     
+                                                                        <div class="media-body align-self-center ms-3">
+                                                                            <p class="mb-0 font-weight-semibold text-uppercase text-dark-alt">Appointments</p>
+                                                                            <p class="mb-0 text-muted">Last Saturday 52 Appointments</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>                                            
+                                                            </div>                                                        
+                                                        </div> 
+                                                    </div>
+                                                </div>
+                                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
+                                            </div>                                    
+                                        </div>                                                                                                        
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Verification Information</h4>
+                                        </div>
+                                        <div class="card-body">        
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            <div>
+                                                                <i class="la la-check text-muted font-16 me-2"></i>Email Verified
+                                                            </div>
+                                                            <span class="">4</span>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            <div>
+                                                                <i class="la la-bell text-muted font-18 me-2"></i>Email Not Verified
+                                                            </div>
+                                                            
+                                                            <span class="">4</span>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            <div>
+                                                                <i class="la la-money text-muted font-16 me-2"></i>Identity Verified
+                                                            </div>
+                                                            <span class="">4</span>
+                                                        </li>
+                                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                            <div>
+                                                                <i class="la la-warning text-muted font-16 me-2"></i>Identity Not Verified
+                                                            </div>
+                                                            <span class="">4</span>
+                                                        </li>
+                                                        
+                                                    </ul><!--end list-group-->
+                                                </div><!--end col-->
+                                            </div><!--end row-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                             
+                    </div>
+                </div>
+                <div class="tab-pane" id="Investors" role="tabpanel">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header fw-bold">
+                                    <div class="row align-items-center">
+                                        <div class="col">                      
+                                            Investors
+                                        </div>                                    
+                                    </div>                               
+                                </div>
+                                <div class="card-body">                                     
+                                    <div class="">
+                                        <table class="table mb-0 table-centered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Investor Name</th>
+                                                    <th>Email</th>
+                                                    <th>Phone No</th>  
+                                                    <th>Identity</th>
+                                                    <th>Referral</th>                                                  
+                                                    <th>Joined Date</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for i in investors %}
+                                                <tr>
+                                                    <td><img src="{{i.profile.avatar}}" alt="" class="thumb-sm rounded-circle me-2">{{i.profile.name}}</td>
+                                                    <td>{{i.email}}
+                                                        {% if i.emailaddress_set.first.verified %}
+                                                        <small class="badge bg-soft-success">Verified</small>
+                                                        {% else %}
+                                                        <small class="badge bg-soft-danger">Not verified</small>
+                                                        {% endif %}
+                                                    
+                                                    </td>
+                                                    <td>{{i.personaldetail.phone_number}}</td>
+                                                    <td>
+                                                        <span class="badge bg-soft-success">verified</span>
+                                                    </td>
+                                                    <td>amunir</td>
+                                                    <td>{{ i.date_joined|date:"Y-m-d H:i:s" }} WIB</td>
+                                                    <td>                                                       
+                                                        <div class="dropdown d-inline-block">
+                                                            <a class="dropdown-toggle arrow-none" id="dLabel11" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                                                <i class="las la-ellipsis-v font-20 text-muted"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel11">
+                                                                <a class="dropdown-item" href="{% url 'admins:InvestorDetail' i.pk %}">Detail Accounts</a>
+                                                                <a class="dropdown-item" href="#">Verification</a>
+                                                                <a class="dropdown-item" href="#">Tasks Details</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}                                      
+                                            </tbody>
+                                        </table>                    
+                                    </div>  
+                                    <div class="row">
+                                        <div class="col">
+                                            <button class="btn btn-outline-light btn-sm px-4 ">+ Add New</button>
+                                        </div>   
+                                        <div class="col-auto">
+                                            <nav aria-label="...">
+                                                <ul class="pagination pagination-sm mb-0">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                                    </li>
+                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                                    </li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#">Next</a>
+                                                    </li>
+                                                </ul>
+                                            </nav>     
+                                        </div>                             
+                                    </div>                                
+                                </div>
+                            </div>
+                        </div>                             
+                    </div>
+                </div>
+                <div class="tab-pane " id="Verification" role="tabpanel">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header fw-bold">
+                                    <div class="row align-items-center">
+                                        <div class="col">                      
+                                            Verification
+                                        </div>                                    
+                                    </div>                               
+                                </div>
+                                <div class="card-body">                                     
+                                    <div class="">
+                                        <table class="table mb-0 table-centered">
+                                            <thead>
+                                                <tr>
+                                                    <th>Investor Name</th>
+                                                    <th>Email</th>
+                                                    <th>Phone No</th>  
+                                                    <th>Identity Verification</th>
+                                                    <th>Referral</th>                                                  
+                                                    <th>Joined Date</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for i in investors %}
+                                                <tr>
+                                                    <td><img src="{{i.profile.avatar}}" alt="" class="thumb-sm rounded-circle me-2">{{i.profile.name}}</td>
+                                                    <td>{{i.email}}<small class="badge bg-soft-pink ms-1">Not verified</small></td>
+                                                    <td>+123456789</td>
+                                                    <td>
+                                                        <span class="badge bg-soft-primary">verified</span>
+                                                    </td>
+                                                    <td>amunir</td>
+                                                    <td>{{ i.date_joined|date:"Y-m-d H:i:s" }} WIB</td>
+                                                    <td>                                                       
+                                                        <div class="dropdown d-inline-block">
+                                                            <a class="dropdown-toggle arrow-none" id="dLabel11" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                                                <i class="las la-ellipsis-v font-20 text-muted"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dLabel11">
+                                                                <a class="dropdown-item" href="#">Detail Accounts</a>
+                                                                <a class="dropdown-item" href="#">Verification</a>
+                                                                <a class="dropdown-item" href="#">Tasks Details</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}                                      
+                                            </tbody>
+                                        </table>                    
+                                    </div>  
+                                    <div class="row">
+                                        <div class="col">
+                                            <button class="btn btn-outline-light btn-sm px-4 ">+ Add New</button>
+                                        </div>   
+                                        <div class="col-auto">
+                                            <nav aria-label="...">
+                                                <ul class="pagination pagination-sm mb-0">
+                                                    <li class="page-item disabled">
+                                                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                                    </li>
+                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                                                    </li>
+                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="#">Next</a>
+                                                    </li>
+                                                </ul>
+                                            </nav>     
+                                        </div>                             
+                                    </div>                                
+                                </div>
+                            </div>
+                        </div>                             
+                    </div>
+                </div>
+            <div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer text-center text-sm-start">
+    &copy; <script>
+        document.write(new Date().getFullYear())
+    </script> Metrica <span class="text-muted d-none d-sm-inline-block float-end">Crafted with <i
+            class="mdi mdi-heart text-danger"></i> by Mannatthemes</span>
+</footer>
+{% endblock %}

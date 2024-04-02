@@ -1,0 +1,10 @@
+{% extends '_base.html' %} {% load static %}
+{% block layout %}
+  {% include "includes/sidenav.html" %}
+  {% include "includes/topbar.html" %}
+  <div class="page-wrapper">
+    <div class="page-content-tab">
+      {% block content %} {% endblock %} 
+    </div>
+  </div>
+{% endblock %}

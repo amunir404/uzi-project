@@ -1,0 +1,373 @@
+{% extends 'sadmins/layout.html' %} {% load static %} 
+
+{% block extra_css_up%}
+    <style>
+        .avatar-profile {
+            width: 8rem; 
+            height: 8rem; 
+            border-radius: 3%; /* membulatkan sudut untuk membuat bentuk bulat */
+            object-fit: cover; /* mengatur gambar agar diatur dalam kotak */
+            margin-bottom: 1rem; /* sekitar 4 piksel */
+        }
+    </style>
+{% endblock extra_css_up %} 
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="page-title-box">
+        <div class="float-end">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Metrica</a></li>
+            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+            <li class="breadcrumb-item active">Profile</li>
+          </ol>
+        </div>
+        <h4 class="page-title">Profile</h4>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="met-profile">
+            <div class="row">
+              <div class="col-lg-12 align-self-center  mb-3 mb-lg-0">
+                <div class="met-profile-main align-items-start">
+                  <div class="met-profile-main-pic">
+                    <img src="{{ investor.profile.avatar }}" alt="avatar" class="avatar-profile"/>
+                  </div>
+                  <div class="met-profile_user-detail ">
+                    <h5 class="met-user-name">{{ investor.profile.name }}</h5>
+                    <p class="mb-0 met-user-name-post">
+                        <i class="mdi mdi-calendar-text-outline me-2">Joined {{ investor.date_joined|timesince }}</i>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0">
+            <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#PersonalInfo" role="tab" aria-selected="true">Personal Info</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#Gallery" role="tab" aria-selected="false">Account and Billing</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#Settings" role="tab" aria-selected="false">Notifications</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#Settings" role="tab" aria-selected="false">Privacy and Security</a>
+                </li>
+            </ul>
+        <div class="tab-content">
+             <div class="tab-pane p-3 active" id="PersonalInfo" role="tabpanel">
+                <div class="row">
+                  <!-- ========== Start Public Information ========== -->
+                  <div class="col-lg-6 col-xl-6">
+                    <div class="card">
+                      <div class="card-header">
+                        <h4 class="card-title">Public Information</h4>
+                      </div>
+                      <div class="card-body">
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Display Name</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-control" type="text" value="{{investor.profile.name}}" disabled />
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Username</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-control" type="text" value="{{investor.username}}" disabled/>
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Avatar</label>
+                          <div class="col-lg-9 col-xl-8">
+                            <img src="{{investor.profile.avatar}}" alt="" class="thumb-lg rounded mx-3">
+                            
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Avatar</label>
+                          <div class="col-lg-9 col-xl-8">
+                            <input class="form-control" type="password" placeholder="New Password"/>
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label" for='aboutme'>About Me</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <textarea class="form-control" rows="5" id="aboutme" disabled>{{investor.profile.aboutme}}</textarea>
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">My Online Status</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-check-input" type="checkbox" {% if investor.profile.status_online %}checked{% endif %} id="flexCheckDisabled" disabled>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ========== End Public Information ========== -->
+                  <!-- ========== Start Personal Information ========== -->
+                  <div class="col-lg-6 col-xl-6">
+                    <div class="card">
+                      <div class="card-header">
+                        <div class="row align-items-center">
+                          <div class="col">
+                            <h4 class="card-title">Personal Information</h4>
+                          </div>
+                        </div>
+                      </div>             
+                      <div class="card-body">
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">
+                              Document Type
+                          </label>
+                          <div class="col-lg-9 col-xl-8">
+                              <select class="form-select" disabled>
+                                  <option>{{investor.personaldetail.id_type.capitalize}}</option>
+                                </select>
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">
+                              ID Number
+                          </label>
+                          <div class="col-lg-9 col-xl-8">
+                            <input class="form-control" type="text" value="{{investor.personaldetail.id_number}}" disabled/>
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Fullname</label>
+                          <div class="col-lg-9 col-xl-8">
+                            <input class="form-control" type="text" value="{{investor.personaldetail.fullname}}" disabled/>
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Date of birth</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-control" type="text" value="{{investor.personaldetail.date_of_birth}}" disabled/>
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label" >Gender</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-control" type="text" value="{{investor.personaldetail.gender.capitalize}}" disabled/>
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Phone</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-control" type="text" value="{{investor.personaldetail.phone_number}}" disabled/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ========== End Personal Information ========== -->
+                  <!-- ========== Start Social Media ========== -->
+                  <div class="col-lg-6 col-xl-6">
+                    <div class="card">
+                      <div class="card-header">
+                        <h4 class="card-title">Social Media</h4>
+                      </div>
+                      <div class="card-body">
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Twitter</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-control" type="text" value="{{investor.socialmedia.twitter}}" disabled />
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Facebook</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-control" type="text" value="{{investor.socialmedia.facebook}}" disabled />
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Instagram</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-control" type="text" value="{{investor.socialmedia.instagram}}" disabled />
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Linkedin</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-control" type="text" value="{{investor.socialmedia.linkedin}}" disabled />
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Youtube</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-control" type="text" value="{{investor.socialmedia.youtube}}" disabled />
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Tiktok</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-control" type="text" value="{{investor.socialmedia.tiktok}}" disabled />
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Website</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-control" type="text" value="{{investor.socialmedia.website}}" disabled />
+                          </div>
+                        </div>
+                       
+                       
+                        
+                       
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ========== End Social Media ========== -->
+                  <!-- ========== Start Bank and Wallet ========== -->
+                  <div class="col-lg-6 col-xl-6">
+                    <div class="card">
+                      <div class="card-header">
+                        <h4 class="card-title">Bank and Wallet</h4>
+                      </div>
+                      <div class="card-body">
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Display Name</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-control" type="text" value="{{investor.profile.name}}" disabled />
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Username</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-control" type="text" value="{{investor.username}}" disabled/>
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">Avatar</label>
+                          <div class="col-lg-9 col-xl-8">
+                            <input class="form-control" type="password" placeholder="New Password"/>
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label" for='aboutme'>About Me</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <textarea class="form-control" rows="5" id="aboutme" disabled>{{investor.profile.aboutme}}</textarea>
+                          </div>
+                        </div>
+                        <div class="form-group mb-3 row">
+                          <label class="col-xl-3 col-lg-3 text-end mb-lg-0 align-self-center form-label">My Online Status</label>
+                          <div class="col-lg-9 col-xl-8">
+                              <input class="form-check-input" type="checkbox" {% if investor.profile.status_online %}checked{% endif %} id="flexCheckDisabled" disabled>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ========== End Bank and Wallet ========== -->
+                </div>
+            </div>
+            <div class="tab-pane p-3" id="Gallery" role="tabpanel">
+                <div class="row">                    
+                    Gallery
+                </div>          
+            </div>                                                
+           
+        </div>        
+        </div>
+    </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<div
+  class="offcanvas offcanvas-end"
+  tabindex="-1"
+  id="Appearance"
+  aria-labelledby="AppearanceLabel"
+>
+  <div class="offcanvas-header border-bottom">
+    <h5 class="m-0 font-14" id="AppearanceLabel">Appearance</h5>
+    <button
+      type="button"
+      class="btn-close text-reset p-0 m-0 align-self-center"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="offcanvas-body">
+    <h6>Account Settings</h6>
+    <div class="p-2 text-start mt-3">
+      <div class="form-check form-switch mb-2">
+        <input class="form-check-input" type="checkbox" id="settings-switch1" />
+        <label class="form-check-label" for="settings-switch1"
+          >Auto updates</label
+        >
+      </div>
+      
+      <div class="form-check form-switch mb-2">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="settings-switch2"
+          checked
+        />
+        <label class="form-check-label" for="settings-switch2"
+          >Location Permission</label
+        >
+      </div>
+      
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="settings-switch3" />
+        <label class="form-check-label" for="settings-switch3"
+          >Show offline Contacts</label
+        >
+      </div>
+      
+    </div>
+    
+    <h6>General Settings</h6>
+    <div class="p-2 text-start mt-3">
+      <div class="form-check form-switch mb-2">
+        <input class="form-check-input" type="checkbox" id="settings-switch4" />
+        <label class="form-check-label" for="settings-switch4"
+          >Show me Online</label
+        >
+      </div>
+      
+      <div class="form-check form-switch mb-2">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="settings-switch5"
+          checked
+        />
+        <label class="form-check-label" for="settings-switch5"
+          >Status visible to all</label
+        >
+      </div>
+      
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="settings-switch6" />
+        <label class="form-check-label" for="settings-switch6"
+          >Notifications Popup</label
+        >
+      </div>
+      
+    </div>
+    
+  </div>
+  
+</div>
+
+{% include "includes/footer.html" %}
+<!-- end Footer -->
+<!--end footer-->
+{% endblock %}

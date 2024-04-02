@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    {% include "includes/title-meta.html" %}
+    {% block css %}
+      {% block extra_css_up %} {% endblock extra_css_up %}
+      {% include "includes/head-css.html" %}
+      {% block extra_css_down %} {% endblock extra_css_down %}
+    {% endblock css %}
+    
+  </head>
+
+  <body id="body">
+    {% block layout %} {% endblock layout %}
+    {% block js %}
+      {% block extra_js_up %} {% endblock extra_js_up %}
+      {% include "includes/vendor-js.html" %}
+      {% block extra_js_down %} {% endblock extra_js_down %}
+    {% endblock js %}
+  </body>
+  <!--end body-->
+</html>
